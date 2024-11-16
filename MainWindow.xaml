@@ -1,0 +1,39 @@
+﻿<Window x:Class="ModbusGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModbusGUI"
+        mc:Ignorable="d"
+        Title="Servidor Modbus" Height="210" Width="415">
+    <Grid>
+        <Label Content="Protocolo:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxProtocolos" SelectionChanged="comboBoxProtocolos_SelectionChanged" HorizontalAlignment="Left" Margin="79,27,0,0" VerticalAlignment="Top" Width="69"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="80,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="34"/>
+        <Label Content="Estado:" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelEstado" Content="Parado" HorizontalAlignment="Left" Margin="75,84,0,0" VerticalAlignment="Top"/>
+        
+
+
+        <Label x:Name="LabelPorts" Content="Puerto Serie:" HorizontalAlignment="Left" Margin="224,25,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxPorts" HorizontalAlignment="Left" Margin="302,27,0,0" VerticalAlignment="Top" Width="69"/>
+        <Label x:Name="LabelParity" Content="Paridad:" HorizontalAlignment="Left" Margin="224,51,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxParity" HorizontalAlignment="Left" Margin="302,54,0,0" VerticalAlignment="Top" Width="69"/>
+        <Label x:Name="LabelStopBits" Content="StopBits:" HorizontalAlignment="Left" Margin="224,80,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxStopBits" HorizontalAlignment="Left" Margin="302,81,0,0" VerticalAlignment="Top" Width="69"/>
+        <Label x:Name="LabelBaudios" Content="Baudios:" HorizontalAlignment="Left" Margin="224,107,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxBaudios" HorizontalAlignment="Left" Margin="302,109,0,0" VerticalAlignment="Top" Width="69"/>
+
+
+
+        <Button Content="Iniciar" HorizontalAlignment="Left" Margin="18,121,0,0" VerticalAlignment="Top" Click="Iniciar" Width="55"/>
+        <Button Content="Parar" HorizontalAlignment="Left" Margin="91,121,0,0" VerticalAlignment="Top" Click="Parar" Width="55"/>
+        
+
+
+
+
+
+    </Grid>
+</Window>
