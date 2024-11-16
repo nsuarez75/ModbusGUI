@@ -6,11 +6,24 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\icono.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\icono.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\icono.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EasyModbusTCP" Version="5.6.0" />
     <PackageReference Include="System.IO.Ports" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\icono.ico" />
   </ItemGroup>
 
 </Project>
