@@ -10,7 +10,7 @@
         <Label Content="Protocolo:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBoxProtocolos" SelectionChanged="comboBoxProtocolos_SelectionChanged" HorizontalAlignment="Left" Margin="79,27,0,0" VerticalAlignment="Top" Width="69"/>
         <Label Content="Dirección:" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="80,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="34"/>
+        <TextBox x:Name="TextBoxdireccion" HorizontalAlignment="Left" Margin="80,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="34"/>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelEstado" Content="Parado" HorizontalAlignment="Left" Margin="75,84,0,0" VerticalAlignment="Top"/>
         

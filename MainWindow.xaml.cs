@@ -102,18 +102,41 @@ namespace ModbusGUI
         private void EncenderServidor()
         {
 
-            string protocol = comboBoxProtocolos.SelectedItem.ToString(); // "RTU" o "TCP"
+            string protocol = comboBoxProtocolos.SelectedItem?.ToString() ?? "RTU"; // "RTU" o "TCP"
+            // Leer configuraciones desde ComboBox
+            string puerto = comboBoxPorts.SelectedItem?.ToString() ?? "COM4";
+            int baudrate = int.Parse(comboBoxBaudios.SelectedItem?.ToString() ?? "9600");
+            var paridad = comboBoxParity.SelectedItem?.ToString() ?? "None";
+            var stopBits = comboBoxStopBits.SelectedItem?.ToString() ?? "One";
+            byte direccion = byte.Parse(TextBoxdireccion.Text);
+
+            // Convertir Parity
+            System.IO.Ports.Parity parityEnum = paridad switch
+            {
+                "None" => System.IO.Ports.Parity.None,
+                "Odd" => System.IO.Ports.Parity.Odd,
+                "Even" => System.IO.Ports.Parity.Even,
+                _ => System.IO.Ports.Parity.None
+            };
+
+            // Convertir StopBits
+            System.IO.Ports.StopBits stopBitsEnum = stopBits switch
+            {
+                "One" => System.IO.Ports.StopBits.One,
+                "Two" => System.IO.Ports.StopBits.Two,
+                _ => System.IO.Ports.StopBits.One
+            };
 
             if (protocol == "RTU")
             {
                 // Inicializar ModbusServer en modo RTU
                 modbusServer = new ModbusServer
                 {
-                    SerialPort = "COM4", // Cambiar por el puerto adecuado
-                    Baudrate = 9600,
-                    Parity = System.IO.Ports.Parity.None,
-                    StopBits = System.IO.Ports.StopBits.One,
-                    UnitIdentifier = 1, // Dirección del esclavo
+                    SerialPort = puerto,
+                    Baudrate = baudrate,
+                    Parity = parityEnum,
+                    StopBits = stopBitsEnum,
+                    UnitIdentifier = direccion, // Dirección del esclavo
                 };
                 // Iniciar el servidor
                 modbusServer.Listen();
@@ -155,15 +178,37 @@ namespace ModbusGUI
 
         private void Iniciar(object sender, RoutedEventArgs e)
         {
-            EncenderServidor();
-            labelEstado.Content = "ON";
+            if (comboBoxProtocolos.SelectedItem?.ToString() == "RTU" && comboBoxPorts.SelectedItem?.ToString() == "No ports available")
+            {
+                MessageBox.Show("Puerto serie no válido");
+            }
+            else
+            {
+                EncenderServidor();
+                labelEstado.Content = "ON";
+
+                // Deshabilitar los controles comunes
+                comboBoxProtocolos.IsEnabled = false;
+                comboBoxBaudios.IsEnabled = false;
+                comboBoxParity.IsEnabled = false;
+                comboBoxPorts.IsEnabled = false;
+                comboBoxStopBits.IsEnabled = false;
+                TextBoxdireccion.IsEnabled = false;
+            }
+
         }
 
         private void Parar(object sender, RoutedEventArgs e)
         {
             PararServidor();
             labelEstado.Content = "OFF";
-                    }
+            comboBoxProtocolos.IsEnabled = true;
+            comboBoxBaudios.IsEnabled = true;
+            comboBoxParity.IsEnabled = true;
+            comboBoxPorts.IsEnabled = true;
+            comboBoxStopBits.IsEnabled = true;
+            TextBoxdireccion.IsEnabled = true;
+        }
 
         private void comboBoxProtocolos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
